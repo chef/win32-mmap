@@ -6,13 +6,7 @@
    windows-pr, 0.5.5 or later.
 
 = Installation
-== Standard Installation
-   rake test (optional)
-   rake install
-
-== Gem Installation
-   ruby win32-mmap.gemspec
-   gem install win32-mmap-x.y.z.gem
+   gem install win32-mmap
    
 = Synopsis
    require 'win32/mmap'
@@ -59,7 +53,7 @@
    Artistic 2.0
     
 = Copyright
-   (C) 2003-2009 Daniel J. Berger, All Rights Reserved
+   (C) 2003-2010 Daniel J. Berger, All Rights Reserved
     
 = Warranty
    This package is provided "as is" and without any express or
