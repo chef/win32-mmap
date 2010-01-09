@@ -1,0 +1,45 @@
+== 0.2.3 - 12-Aug-2009
+* Changed license to Artistic 2.0.
+* The MMap.open method now properly handles a block.
+* Some gemspec updates, including the license and description.
+* Changed test and example file names.
+* Some Rakefile updates, including tasks for running example programs.
+
+== 0.2.2 - 16-May-2007
+* Fixed a bug where marshalled data that happened to end with a "\0" would
+  cause the getter to fail.
+* Now runs -w clean.
+* Added more tests.
+* Removed the install.rb file. Installation is now handled via the 'rake
+  install' task.
+* Updated the MANIFEST file and made it rdoc friendly.
+
+== 0.2.1 - 22-Oct-2006
+* Removed the custom memcpy function since that function now does the right
+  thing regardless of argument type.
+* Now requires windows-pr 0.5.6 or later (to take advantage of the improved
+  memcpy).
+
+== 0.2.0 - 13-Oct-2006
+* Completely scrapped the old interface and code.  It is now pure Ruby and
+  has a much different API, and some internal changes.
+* Added a gemspec and an install.rb file for manual installation.
+* Now requires the windows-pr package, 0.5.5 or higher.
+* Modified the example scripts.
+* Updated the docs, and replaced the .txt and .rd files with a single .rdoc
+  file.
+
+== 0.1.1 - 1-Mar-2005
+* Moved the 'examples' directory to the toplevel directory.
+* Made the CHANGES and README files rdoc friendly.
+
+== 0.1.0 - 12-Aug-2004
+* Modified to use the newer allocation framework.  That means that, as of
+  this release, this package requires Ruby 1.8.0 or later.
+* Moved sample programs under doc/examples.
+
+== 0.0.2 - 14-Mar-2004
+* Fixed sprintf() bug in new().
+
+== 0.0.1 - 13-Mar-2004
+* Initial (Beta) release
