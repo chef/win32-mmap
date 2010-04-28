@@ -15,7 +15,7 @@ module Win32
    class MMap
       
       # The version of the win32-mmap library.
-      VERSION = '0.2.3'
+      VERSION = '0.2.4'
 
       # Error typically raised in any method of Win32::MMap should fail.
       #
