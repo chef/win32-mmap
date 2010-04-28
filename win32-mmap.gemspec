@@ -1,27 +1,25 @@
 require 'rubygems'
 
-spec = Gem::Specification.new do |gem|
-   gem.name      = 'win32-mmap'
-   gem.version   = '0.2.3'
-   gem.author    = 'Daniel J. Berger'
-   gem.license   = 'Artistic 2.0'
-   gem.email     = 'djberg96@gmail.com'
-   gem.homepage  = 'http://www.rubyforge.org/projects/win32utils'
-   gem.platform  = Gem::Platform::RUBY
-   gem.summary   = 'Memory mapped IO for Windows.'
-   gem.test_file = 'test/test_win32_mmap.rb'
-   gem.has_rdoc  = true
-   gem.files     = Dir['**/*'].reject{ |f| f.include?('CVS') }
+Gem::Specification.new do |spec|
+  spec.name      = 'win32-mmap'
+  spec.version   = '0.2.4'
+  spec.author    = 'Daniel J. Berger'
+  spec.license   = 'Artistic 2.0'
+  spec.email     = 'djberg96@gmail.com'
+  spec.homepage  = 'http://www.rubyforge.org/projects/win32utils'
+  spec.platform  = Gem::Platform::RUBY
+  spec.summary   = 'Memory mapped IO for Windows.'
+  spec.test_file = 'test/test_win32_mmap.rb'
+  spec.has_rdoc  = true
+  spec.files     = Dir['**/*'].reject{ |f| f.include?('git') }
 
-   gem.rubyforge_project = 'win32utils'
-   gem.extra_rdoc_files  = ['MANIFEST', 'README', 'CHANGES']
+  spec.rubyforge_project = 'win32utils'
+  spec.extra_rdoc_files  = ['MANIFEST', 'README', 'CHANGES']
 
-   gem.add_dependency('windows-pr')
+  spec.add_dependency('windows-pr')
 
-   gem.description = <<-EOF
-      The win32-mmap library provides an interface for memory mapped IO on
-      MS Windows.
-   EOF
+  spec.description = <<-EOF
+    The win32-mmap library provides an interface for memory mapped IO on
+    MS Windows.
+  EOF
 end
-
-Gem::Builder.new(spec).build
