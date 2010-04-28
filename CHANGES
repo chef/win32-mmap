@@ -1,3 +1,8 @@
+== 0.2.4 - 28-Apr-2010
+* The Rakefile was refactored. It now handles gem creation, building and
+  cleanup.
+* Inline code was removed from the gemspec.
+
 == 0.2.3 - 12-Aug-2009
 * Changed license to Artistic 2.0.
 * The MMap.open method now properly handles a block.
