@@ -14,7 +14,7 @@ class TC_Win32_Mmap < Test::Unit::TestCase
    end
 
    def test_version
-      assert_equal('0.2.3', MMap::VERSION)
+      assert_equal('0.2.4', MMap::VERSION)
    end
    
    def test_dynamic_string_value
