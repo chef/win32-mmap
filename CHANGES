@@ -2,6 +2,8 @@
 * The Rakefile was refactored. It now handles gem creation, building and
   cleanup.
 * Inline code was removed from the gemspec.
+* Removed the doc directory from the repository. The information that was
+  there is already covered in the README.
 
 == 0.2.3 - 12-Aug-2009
 * Changed license to Artistic 2.0.
