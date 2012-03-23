@@ -7,10 +7,8 @@ Gem::Specification.new do |spec|
   spec.license   = 'Artistic 2.0'
   spec.email     = 'djberg96@gmail.com'
   spec.homepage  = 'http://www.rubyforge.org/projects/win32utils'
-  spec.platform  = Gem::Platform::RUBY
   spec.summary   = 'Memory mapped IO for Windows.'
   spec.test_file = 'test/test_win32_mmap.rb'
-  spec.has_rdoc  = true
   spec.files     = Dir['**/*'].reject{ |f| f.include?('git') }
 
   spec.rubyforge_project = 'win32utils'
