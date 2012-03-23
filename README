@@ -2,7 +2,6 @@
    This package provides a Ruby interface for memory mapped I/O on MS Windows.
    
 = Prerequisites
-   Ruby 1.8.2 or later.
    windows-pr, 0.5.5 or later.
 
 = Installation
@@ -53,7 +52,7 @@
    Artistic 2.0
     
 = Copyright
-   (C) 2003-2010 Daniel J. Berger, All Rights Reserved
+   (C) 2003-2012 Daniel J. Berger, All Rights Reserved
     
 = Warranty
    This package is provided "as is" and without any express or
