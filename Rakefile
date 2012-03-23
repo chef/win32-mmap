@@ -1,12 +1,10 @@
 require 'rake'
+require 'rake/clean'
 require 'rake/testtask'
 
-namespace 'gem' do
-  desc 'Delete any gem files in the project.'
-  task :clean do
-    Dir['*.gem'].each{ |f| File.delete(f) }
-  end
+CLEAN.include('**/*.gem')
 
+namespace 'gem' do
   desc 'Create the win32-mmap gem.'
   task :create => [:clean] do
     spec = eval(IO.read('win32-mmap.gemspec'))
@@ -41,3 +39,5 @@ Rake::TestTask.new do |t|
   t.verbose = true
   t.warning = true
 end
+
+task :default => :test
