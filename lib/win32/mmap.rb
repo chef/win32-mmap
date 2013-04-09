@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), 'windows', 'constants')
-#require File.join(File.dirname(__FILE__), 'windows', 'structs')
+require File.join(File.dirname(__FILE__), 'windows', 'structs')
 require File.join(File.dirname(__FILE__), 'windows', 'functions')
 
 # The Win32 module serves as a namespace only.
@@ -13,6 +13,7 @@ module Win32
 
     include Windows::Constants
     include Windows::Functions
+    include Windows::Structs
 
     # The name of the file from which to create a mapping object.  This
     # value may be nil.

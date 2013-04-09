@@ -1,5 +1,10 @@
 module Windows
   module Constants
+    GENERIC_READ  = 0x80000000
+    GENERIC_WRITE = 0x40000000
+
+    INVALID_HANDLE_VALUE = 0xFFFFFFFF
+
     PAGE_NOACCESS          = 0x01
     PAGE_READONLY          = 0x02
     PAGE_READWRITE         = 0x04
