@@ -158,9 +158,10 @@ module Win32
       @protection   ||= PAGE_READWRITE
       @access       ||= FILE_MAP_WRITE
       @size         ||= 0
-      @inherit      ||= 0
       @base_address ||= 0
       @timeout      ||= 10 # Milliseconds
+
+      self.inherit = false unless @inherit
 
       @hash = {}
 
@@ -246,12 +247,13 @@ module Win32
     # its nLength member to 12 and its bInheritHandle member to TRUE.
     #
     def inherit=(bool)
+      @inherit = SECURITY_ATTRIBUTES.new
+      @inherit[:nLength] = SECURITY_ATTRIBUTES.size
+
       if bool
-        @inherit = SECURITY_ATTRIBUTES.new
-        @inherit[:nlength] = SECURITY_ATTRIBUTES.size
         @inherit[:bInheritHandle] = true
       else
-        @inherit = nil
+        @inherit[:bInheritHandle] = false
       end
     end
 
@@ -298,6 +300,8 @@ module Win32
     #--
     # This replaces the getvar/setvar API from 0.1.0.
     #
+    # TODO: FIX!
+    #
     def method_missing(method_id, *args)
       method = method_id.id2name
       args = args.first if args.length == 1
@@ -310,27 +314,29 @@ module Win32
           if mmap_lock
             instance_variable_set("@#{method}", args)
             marshal = Marshal.dump(@hash)
-            @address = FFI::MemoryPointer.new_from_string(marshal).address
+            @address = FFI::MemoryPointer.from_string(marshal).address
             mmap_unlock
           end
         else
           instance_variable_set("@#{method}", args)
           marshal = Marshal.dump(@hash)
-          @address = FFI::MemoryPointer.new_from_string(marshal).address
+          @address = FFI::MemoryPointer.from_string(marshal).address
         end
       else # Getter
         buf = FFI::MemoryPointer.new(:char, @size)
 
         if @autolock
           if mmap_lock
-            memcpy(buf, @address, @size) # TODO: Convert
+            ptr = FFI::Pointer.new(:char, @address)
+            buf = buf.read_string(@size)
             hash = Marshal.load(buf)
             val  = hash["#{method}"]
             instance_variable_set("@#{method}", val)
             mmap_unlock
           end
         else
-           memcpy(buf, @address, @size) # TODO: Convert
+           ptr = FFI::Pointer.new(:char, @address)
+           buf = buf.read_string(@size)
            hash = Marshal.load(buf)
            val  = hash["#{method}"]
            instance_variable_set("@#{method}", val)
