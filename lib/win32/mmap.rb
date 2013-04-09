@@ -370,13 +370,13 @@ module Win32
       true
     end
 
-    # Gets the size of an existing mapping based on the address.  Used by
-    # the MMap.open method when a size isn't specified.
+    # Gets the size of an existing mapping based on the address. This
+    # is used by the MMap.open method when a size isn't specified.
     #
     def get_view_size
-      mbi = [0,0,0,0,0,0,0].pack('LLLLLLL') # MEMORY_BASIC_INFORMATION
+      mbi = MEMORY_BASIC_INFORMATION.new
       VirtualQuery(@address, mbi, mbi.size)
-      mbi[12,4].unpack('L').first # RegionSize
+      mbi[:RegionSize]
     end
   end # MMap
 end # Win32
