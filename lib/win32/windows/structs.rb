@@ -3,10 +3,11 @@ require 'ffi'
 module Windows
   module Structs
     extend FFI::Library
+    typedef :ulong, :dword
 
     class SECURITY_ATTRIBUTES < FFI::Struct
       layout(
-        :nLength, :ulong,
+        :nLength, :dword,
         :lpSecurityDescriptor, :pointer,
         :bInheritHandle, :bool
       )
@@ -21,6 +22,7 @@ module Windows
         :State, :ulong,
         :Protect, :dword,
         :Type, :dword
+      )
     end
   end
 end
