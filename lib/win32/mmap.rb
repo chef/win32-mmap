@@ -315,15 +315,15 @@ module Win32
           if mmap_lock
             instance_variable_set("@#{method}", args)
             marshal = Marshal.dump(@hash)
-	    ptr = FFI::Pointer.new(:char, @address)
-	    ptr.write_string(marshal,marshal.length)
+            ptr = FFI::Pointer.new(:char, @address)
+            ptr.write_string(marshal,marshal.length)
             mmap_unlock
           end
         else
           instance_variable_set("@#{method}", args)
           marshal = Marshal.dump(@hash)
-	  ptr = FFI::Pointer.new(:char, @address)
-	  ptr.write_string(marshal,marshal.length)
+          ptr = FFI::Pointer.new(:char, @address)
+          ptr.write_string(marshal,marshal.length)
         end
       else # Getter
         buf = FFI::MemoryPointer.new(:char, @size)
