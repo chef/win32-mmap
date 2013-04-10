@@ -5,7 +5,7 @@ module Windows
 
     WAIT_OBJECT_0 = 0
 
-    INVALID_HANDLE_VALUE = 0xFFFFFFFF
+    INVALID_HANDLE_VALUE = -1
 
     PAGE_NOACCESS          = 0x01
     PAGE_READONLY          = 0x02
