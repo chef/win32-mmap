@@ -1,3 +1,6 @@
+== 0.3.0 - 10-Apr-2013
+* Converted code to use FFI.
+
 == 0.2.4 - 28-Apr-2010
 * The Rakefile was refactored. It now handles gem creation, building and
   cleanup.
