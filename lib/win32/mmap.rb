@@ -158,6 +158,7 @@ module Win32
       @protection   ||= PAGE_READWRITE
       @access       ||= FILE_MAP_WRITE
       @size         ||= 0
+      @inherit      ||= nil
       @base_address ||= 0
       @timeout      ||= 10 # Milliseconds
 
@@ -189,7 +190,7 @@ module Win32
       end
 
       if @open
-        @mh = OpenFileMapping(@access, @inherit, @name)
+        @mh = OpenFileMapping(@access, @inherit[:bInheritHandle], @name)
         raise SystemCallError.new('OpenFileMapping', FFI.errno) if @mh == 0
       else
         @mh = CreateFileMapping(@fh, @inherit, @protection, 0, @size, @name)
@@ -314,13 +315,15 @@ module Win32
           if mmap_lock
             instance_variable_set("@#{method}", args)
             marshal = Marshal.dump(@hash)
-            @address = FFI::MemoryPointer.from_string(marshal).address
+	    ptr = FFI::Pointer.new(:char, @address)
+	    ptr.write_string(marshal,marshal.length)
             mmap_unlock
           end
         else
           instance_variable_set("@#{method}", args)
           marshal = Marshal.dump(@hash)
-          @address = FFI::MemoryPointer.from_string(marshal).address
+	  ptr = FFI::Pointer.new(:char, @address)
+	  ptr.write_string(marshal,marshal.length)
         end
       else # Getter
         buf = FFI::MemoryPointer.new(:char, @size)
@@ -328,7 +331,7 @@ module Win32
         if @autolock
           if mmap_lock
             ptr = FFI::Pointer.new(:char, @address)
-            buf = buf.read_string(@size)
+            buf = ptr.read_string(@size)
             hash = Marshal.load(buf)
             val  = hash["#{method}"]
             instance_variable_set("@#{method}", val)
@@ -336,7 +339,7 @@ module Win32
           end
         else
            ptr = FFI::Pointer.new(:char, @address)
-           buf = buf.read_string(@size)
+           buf = ptr.read_string(@size)
            hash = Marshal.load(buf)
            val  = hash["#{method}"]
            instance_variable_set("@#{method}", val)
