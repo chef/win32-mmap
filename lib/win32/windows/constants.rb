@@ -2,6 +2,7 @@ module Windows
   module Constants
     GENERIC_READ  = 0x80000000
     GENERIC_WRITE = 0x40000000
+    OPEN_ALWAYS   = 4
 
     WAIT_OBJECT_0 = 0
 
