@@ -1,3 +1,7 @@
+== 0.3.1 - 26-Apr-2013
+* Added the missing OPEN_ALWAYS constant. Thanks go to Frank Quednau.
+* Set the dependency properly (ffi now, not windows-pr). 
+
 == 0.3.0 - 10-Apr-2013
 * Converted code to use FFI.
 
