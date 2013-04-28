@@ -14,7 +14,7 @@ class TC_Win32_Mmap < Test::Unit::TestCase
   end
 
   test "version is set to expected value" do
-    assert_equal('0.3.1', MMap::VERSION)
+    assert_equal('0.3.2', MMap::VERSION)
   end
 
   test "dynamic variable names and string values work as expected" do
