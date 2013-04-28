@@ -9,7 +9,7 @@ module Win32
   #
   class MMap
     # The version of the win32-mmap library.
-    VERSION = '0.3.1'
+    VERSION = '0.3.2'
 
     include Windows::Constants
     include Windows::Functions
@@ -180,7 +180,7 @@ module Win32
 
         rights = GENERIC_READ|GENERIC_WRITE
 
-        @fh = CreateFile(@file, rights, 0, 0, OPEN_ALWAYS, 0, 0)
+        @fh = CreateFile(@file, rights, 0, nil, OPEN_ALWAYS, 0, 0)
 
         if @fh == INVALID_HANDLE_VALUE
           raise SystemCallError.new('CreateFile', FFI.errno)
