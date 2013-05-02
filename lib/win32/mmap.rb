@@ -292,6 +292,25 @@ module Win32
       @autolock
     end
 
+    # Writes a string directly to the underlying file
+    def write_string(content)
+      lock_pattern do
+        ptr = FFI::Pointer.new(:char, @address)
+        ptr.write_string(content,content.length)
+      end
+    end
+
+    # Reads a string of a given length from the beginning of the file
+    # if no length is given, reads the file with the @size attribute
+    # of this instance
+    def read_string(length = @size)
+      lock_pattern do
+        FFI::MemoryPointer.new(:char, length)
+        ptr = FFI::Pointer.new(:char, @address)
+        ptr.read_string(length)
+      end
+    end
+
     private
 
     # :stopdoc:
@@ -311,41 +330,38 @@ module Win32
         method.chop!
         @hash["#{method}"] = args
 
-        if @autolock
-          if mmap_lock
-            instance_variable_set("@#{method}", args)
-            marshal = Marshal.dump(@hash)
-            ptr = FFI::Pointer.new(:char, @address)
-            ptr.write_string(marshal,marshal.length)
-            mmap_unlock
-          end
-        else
+        lock_pattern do 
           instance_variable_set("@#{method}", args)
           marshal = Marshal.dump(@hash)
           ptr = FFI::Pointer.new(:char, @address)
           ptr.write_string(marshal,marshal.length)
         end
-      else # Getter
-        buf = FFI::MemoryPointer.new(:char, @size)
 
-        if @autolock
-          if mmap_lock
-            ptr = FFI::Pointer.new(:char, @address)
-            buf = ptr.read_string(@size)
-            hash = Marshal.load(buf)
-            val  = hash["#{method}"]
-            instance_variable_set("@#{method}", val)
-            mmap_unlock
-          end
-        else
-           ptr = FFI::Pointer.new(:char, @address)
-           buf = ptr.read_string(@size)
-           hash = Marshal.load(buf)
-           val  = hash["#{method}"]
-           instance_variable_set("@#{method}", val)
+      else # Getter
+
+        lock_pattern do 
+          buf = FFI::MemoryPointer.new(:char, @size)
+          ptr = FFI::Pointer.new(:char, @address)
+          buf = ptr.read_string(@size)
+          hash = Marshal.load(buf)
+          val  = hash["#{method}"]
+          instance_variable_set("@#{method}", val)
         end
 
         return instance_variable_get("@#{method}")
+      end
+    end
+
+    def lock_pattern
+      if @autolock
+        if mmap_lock
+          output = yield
+          mmap_unlock
+          output
+        end
+      else
+         output = yield
+         output
       end
     end
 

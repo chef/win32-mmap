@@ -45,6 +45,12 @@ class TC_Win32_Mmap < Test::Unit::TestCase
     assert_equal([{1=>2}, [1,2,3], 'foo'], @mmap.barray)
   end
 
+  test "primitive write/read of file" do
+    input = "Greetings, astute reader"
+    assert_nothing_raised{ @mmap.write_string(input) }
+    assert_equal(input, @mmap.read_string(input.length))
+  end
+
   test "passing an invalid option raises an argument error" do
     assert_raises(ArgumentError){ MMap.new(:foo => 1) }
   end
