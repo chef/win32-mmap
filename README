@@ -2,7 +2,7 @@
    This package provides a Ruby interface for memory mapped I/O on MS Windows.
    
 = Prerequisites
-   windows-pr, 0.5.5 or later.
+   ffi
 
 = Installation
    gem install win32-mmap
@@ -42,8 +42,8 @@
 
    In short, memory mapped files provide shared memory under Windows.
 
-	(This explanation was largely borrowed from Roger Lee's Win32::MMF Perl
-	module.)
+  (This explanation was largely borrowed from Roger Lee's Win32::MMF Perl
+  module.)
 
 = Future Plans
    Suggestions welcome.
