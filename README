@@ -46,6 +46,12 @@
   (This explanation was largely borrowed from Roger Lee's Win32::MMF Perl
   module.)
 
+== Contributions
+  Although this library is free, please consider having your company
+  setup a gittip if used by your company professionally.
+
+  http://www.gittip.com/djberg96/
+
 = Future Plans
   Suggestions welcome.
 
