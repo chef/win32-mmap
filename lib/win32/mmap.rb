@@ -9,7 +9,7 @@ module Win32
   #
   class MMap
     # The version of the win32-mmap library.
-    VERSION = '0.3.2'
+    VERSION = '0.4.0'
 
     include Windows::Constants
     include Windows::Functions
@@ -320,8 +320,6 @@ module Win32
     #--
     # This replaces the getvar/setvar API from 0.1.0.
     #
-    # TODO: FIX!
-    #
     def method_missing(method_id, *args)
       method = method_id.id2name
       args = args.first if args.length == 1
@@ -330,7 +328,7 @@ module Win32
         method.chop!
         @hash["#{method}"] = args
 
-        lock_pattern do 
+        lock_pattern do
           instance_variable_set("@#{method}", args)
           marshal = Marshal.dump(@hash)
           ptr = FFI::Pointer.new(:char, @address)
@@ -339,7 +337,7 @@ module Win32
 
       else # Getter
 
-        lock_pattern do 
+        lock_pattern do
           buf = FFI::MemoryPointer.new(:char, @size)
           ptr = FFI::Pointer.new(:char, @address)
           buf = ptr.read_string(@size)

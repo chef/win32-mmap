@@ -1,3 +1,8 @@
+== 0.4.0 - 21-Aug-2013
+* Added methods for reading or writing raw strings to the underlying
+  memory mapped file (as opposed to marshalled data). Thanks go to
+  Frank Quednau for the patch.
+
 == 0.3.2 - 28-Apr-2013
 * Fixed a prototype mismatch in a call to CreateFile. Thanks go to
   Frank Quednau for the spot.
