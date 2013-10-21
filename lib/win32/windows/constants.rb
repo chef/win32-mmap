@@ -1,12 +1,18 @@
+require 'ffi'
+
 module Windows
   module Constants
+    include FFI::Library
+
+    private
+
     GENERIC_READ  = 0x80000000
     GENERIC_WRITE = 0x40000000
     OPEN_ALWAYS   = 4
 
     WAIT_OBJECT_0 = 0
 
-    INVALID_HANDLE_VALUE = -1
+    INVALID_HANDLE_VALUE = FFI::Pointer.new(-1).address
 
     PAGE_NOACCESS          = 0x01
     PAGE_READONLY          = 0x02
