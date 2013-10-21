@@ -9,7 +9,7 @@ module Win32
   #
   class MMap
     # The version of the win32-mmap library.
-    VERSION = '0.4.0'
+    VERSION = '0.4.1'
 
     include Windows::Constants
     include Windows::Functions
