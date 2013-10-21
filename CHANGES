@@ -1,3 +1,7 @@
+== 0.4.1 - 21-Oct-2013
+* Fixed the INVALID_HANDLE_VALUE constant for 64-bit Ruby.
+* Added rake and test-unit as development dependencies.
+
 == 0.4.0 - 21-Aug-2013
 * Added methods for reading or writing raw strings to the underlying
   memory mapped file (as opposed to marshalled data). Thanks go to
