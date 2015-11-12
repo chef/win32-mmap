@@ -1,3 +1,11 @@
+== 0.4.2 - 12-Nov-2015
+* Added a win32-mmap.rb file for convenience.
+* This gem is now signed.
+* Use require_relative where appropriate.
+* Added an appveyor.yml file for the MS continuous integration service.
+* The gem tasks in the Rakefile now assume Rubygems 2.x.
+* References to the rubyforge_project in the gemspec were removed.
+
 == 0.4.1 - 21-Oct-2013
 * Fixed the INVALID_HANDLE_VALUE constant for 64-bit Ruby.
 * Added rake and test-unit as development dependencies.
