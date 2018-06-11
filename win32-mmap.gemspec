@@ -10,7 +10,6 @@ Gem::Specification.new do |spec|
   spec.summary    = 'Memory mapped IO for Windows.'
   spec.test_file  = 'test/test_win32_mmap.rb'
   spec.files      = Dir['**/*'].reject{ |f| f.include?('git') }
-  spec.cert_chain = Dir['certs/*']
 
   spec.extra_rdoc_files  = ['MANIFEST', 'README.md', 'CHANGES']
 
