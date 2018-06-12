@@ -6,13 +6,12 @@ Gem::Specification.new do |spec|
   spec.author     = 'Daniel J. Berger'
   spec.license    = 'Artistic 2.0'
   spec.email      = 'djberg96@gmail.com'
-  spec.homepage   = 'https://github.com/djberg96/win32-mmap'
+  spec.homepage   = 'https://github.com/chef/win32-mmap'
   spec.summary    = 'Memory mapped IO for Windows.'
   spec.test_file  = 'test/test_win32_mmap.rb'
   spec.files      = Dir['**/*'].reject{ |f| f.include?('git') }
-  spec.cert_chain = Dir['certs/*']
 
-  spec.extra_rdoc_files  = ['MANIFEST', 'README', 'CHANGES']
+  spec.extra_rdoc_files  = ['MANIFEST', 'README.md', 'CHANGES']
 
   spec.add_dependency('ffi')
   spec.add_development_dependency('rake')
