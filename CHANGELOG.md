@@ -1,5 +1,11 @@
 # win32-mmap Changelog
 
+<!-- latest_release -->
+<!-- latest_release -->
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 == 0.4.2 - 12-Nov-2015
 * Added a win32-mmap.rb file for convenience.
 * This gem is now signed.
@@ -7,6 +13,7 @@
 * Added an appveyor.yml file for the MS continuous integration service.
 * The gem tasks in the Rakefile now assume Rubygems 2.x.
 * References to the rubyforge_project in the gemspec were removed.
+<!-- latest_stable_release -->
 
 == 0.4.1 - 21-Oct-2013
 * Fixed the INVALID_HANDLE_VALUE constant for 64-bit Ruby.
@@ -23,7 +30,7 @@
 
 == 0.3.1 - 26-Apr-2013
 * Added the missing OPEN_ALWAYS constant. Thanks go to Frank Quednau.
-* Set the dependency properly (ffi now, not windows-pr). 
+* Set the dependency properly (ffi now, not windows-pr).
 
 == 0.3.0 - 10-Apr-2013
 * Converted code to use FFI.

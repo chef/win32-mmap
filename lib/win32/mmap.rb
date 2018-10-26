@@ -1,6 +1,7 @@
 require_relative 'windows/constants'
 require_relative 'windows/structs'
 require_relative 'windows/functions'
+require_relative 'windows/version'
 
 # The Win32 module serves as a namespace only.
 #
@@ -8,9 +9,6 @@ module Win32
   # The MMap class encapsulates functions for memory mapped files.
   #
   class MMap
-    # The version of the win32-mmap library.
-    VERSION = '0.4.2'
-
     include Windows::Constants
     include Windows::Functions
     include Windows::Structs
