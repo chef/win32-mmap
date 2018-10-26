@@ -1,3 +1,5 @@
+# win32-mmap Changelog
+
 == 0.4.2 - 12-Nov-2015
 * Added a win32-mmap.rb file for convenience.
 * This gem is now signed.

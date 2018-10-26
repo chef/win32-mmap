@@ -1,5 +1,3 @@
-require 'rubygems'
-
 Gem::Specification.new do |spec|
   spec.name       = 'win32-mmap'
   spec.version    = '0.4.2'
@@ -9,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.homepage   = 'https://github.com/chef/win32-mmap'
   spec.summary    = 'Memory mapped IO for Windows.'
   spec.test_file  = 'test/test_win32_mmap.rb'
-  spec.files      = Dir['**/*'].reject{ |f| f.include?('git') }
+  spec.files      = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(\..*|Gemfile|Rakefile|doc|examples|VERSION|appveyor.yml|test|spec)}) }
 
-  spec.extra_rdoc_files  = ['MANIFEST', 'README.md', 'CHANGES']
+  spec.extra_rdoc_files  = ['README.md', 'CHANGELOG.md']
 
   spec.add_dependency('ffi')
   spec.add_development_dependency('rake')
