@@ -10,7 +10,7 @@ slack:
 rubygems:
   - win32-mmap
 
-release_branch:
+release_branches:
   - ffi
 
 github:
