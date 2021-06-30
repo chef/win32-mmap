@@ -1,22 +1,7 @@
-require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 
 CLEAN.include('**/*.gem')
-
-namespace 'gem' do
-  desc 'Create the win32-mmap gem.'
-  task :create => [:clean] do
-    spec = eval(IO.read('win32-mmap.gemspec'))
-    Gem::Builder.new(spec).build
-  end
-
-  desc 'Install the win32-mmap gem.'
-  task :install => [:create] do
-    file = Dir['*.gem'].first
-    sh "gem install #{file}"
-  end
-end
 
 namespace 'example' do
   desc 'Run the example mmap file program'
@@ -38,6 +23,20 @@ end
 Rake::TestTask.new do |t|
   t.verbose = true
   t.warning = true
+end
+
+begin
+  require "yard"
+  YARD::Rake::YardocTask.new(:docs)
+rescue LoadError
+  puts "yard is not available. bundle install first to make sure all dependencies are installed."
+end
+
+task :console do
+  require "irb"
+  require "irb/completion"
+  ARGV.clear
+  IRB.start
 end
 
 task :default => :test
