@@ -11,7 +11,7 @@ rubygems:
   - win32-mmap
 
 release_branches:
-  - ffi
+  - main
 
 github:
   # This deletes the GitHub PR branch after successfully merged into the release branch
