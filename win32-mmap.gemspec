@@ -4,7 +4,7 @@ require "win32/windows/version"
 
 Gem::Specification.new do |spec|
   spec.name       = 'win32-mmap'
-  spec.version    = Win32::Service::VERSION
+  spec.version    = Win32::MMap::VERSION
   spec.author     = 'Daniel J. Berger'
   spec.license    = 'Artistic 2.0'
   spec.email      = 'djberg96@gmail.com'
