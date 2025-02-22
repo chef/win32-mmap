@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.extra_rdoc_files  = ['README.md']
 
-  spec.add_dependency('ffi')
+  spec.add_dependency('ffi', '>= 1.15.5', '< 1.17.0')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('test-unit')
 
