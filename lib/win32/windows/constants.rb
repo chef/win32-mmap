@@ -4,7 +4,6 @@ module Windows
   module Constants
     include FFI::Library
 
-
     GENERIC_READ  = 0x80000000
     GENERIC_WRITE = 0x40000000
     OPEN_ALWAYS   = 4
