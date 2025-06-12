@@ -4,6 +4,7 @@ coverage
 pkg
 */tags
 *~
+.ruby-version
 
 # you should check in your Gemfile.lock in applications, and not in gems
 Gemfile.lock

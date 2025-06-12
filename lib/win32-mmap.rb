@@ -1,1 +1,1 @@
-require_relative 'win32/mmap'
+require_relative "win32/mmap"

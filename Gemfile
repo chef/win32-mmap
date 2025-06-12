@@ -8,6 +8,10 @@ group :docs do
   gem "github-markup"
 end
 
+group :style do
+  gem "cookstyle", "~> 8.1"
+end
+
 group :debug do
   gem "pry"
   gem "pry-byebug"

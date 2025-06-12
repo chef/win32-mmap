@@ -1,7 +1,7 @@
-require_relative 'windows/constants'
-require_relative 'windows/structs'
-require_relative 'windows/functions'
-require_relative 'windows/version'
+require_relative "windows/constants"
+require_relative "windows/structs"
+require_relative "windows/functions"
+require_relative "windows/version"
 
 # The Win32 module serves as a namespace only.
 #
@@ -129,24 +129,24 @@ module Win32
     #    end
     #
     def initialize(opts = {})
-      valid = %w[
+      valid = %w{
         file name protection access inherit size
         base_address open autolock timeout
-      ]
+      }
 
       @open     = nil
       @file     = nil
       @autolock = nil
 
       # Validate the keys, handle inherit specially.
-      opts.each{ |key, value|
+      opts.each { |key, value|
         key = key.to_s.downcase
 
         unless valid.include?(key)
           raise ArgumentError, "Invalid key '#{key}'"
         end
 
-        if key == 'inherit'
+        if key == "inherit"
           self.inherit = value # To force inherit= method call
         else
           instance_variable_set("@#{key}", value)
@@ -170,18 +170,19 @@ module Win32
       @lock_flag = 0 # Internal use only
 
       if @file
-        if File.exists?(@file)
+        if File.exist?(@file)
           fsize = File.size(@file)
-          raise ArgumentError, 'cannot open 0 byte file' if fsize.zero?
+          raise ArgumentError, "cannot open 0 byte file" if fsize == 0
+
           @size = fsize if @size < fsize
         end
 
-        rights = GENERIC_READ|GENERIC_WRITE
+        rights = GENERIC_READ | GENERIC_WRITE
 
         @fh = CreateFile(@file, rights, 0, nil, OPEN_ALWAYS, 0, 0)
 
         if @fh == INVALID_HANDLE_VALUE
-          raise SystemCallError.new('CreateFile', FFI.errno)
+          raise SystemCallError.new("CreateFile", FFI.errno)
         end
       else
         @fh = INVALID_HANDLE_VALUE
@@ -189,21 +190,21 @@ module Win32
 
       if @open
         @mh = OpenFileMapping(@access, @inherit[:bInheritHandle], @name)
-        raise SystemCallError.new('OpenFileMapping', FFI.errno) if @mh == 0
+        raise SystemCallError.new("OpenFileMapping", FFI.errno) if @mh == 0
       else
         @mh = CreateFileMapping(@fh, @inherit, @protection, 0, @size, @name)
-        raise SystemCallError.new('CreateFileMapping', FFI.errno) if @mh == 0
+        raise SystemCallError.new("CreateFileMapping", FFI.errno) if @mh == 0
       end
 
       if @open
         @address = MapViewOfFileEx(@mh, @access, 0, 0, 0, @base_address)
-        @size    = get_view_size()
+        @size    = get_view_size
       else
         @address = MapViewOfFileEx(@mh, @access, 0, 0, 0, @base_address)
       end
 
       if @address == 0
-        raise SystemCallError.new('MapviewOfFileEx', FFI.errno)
+        raise SystemCallError.new("MapviewOfFileEx", FFI.errno)
       end
 
       if @autolock
@@ -217,11 +218,9 @@ module Win32
         begin
           yield @address
         ensure
-         close
+          close
         end
       end
-
-      @address
     end
 
     # Opens an existing file mapping using +name+.  You may pass a hash
@@ -233,10 +232,10 @@ module Win32
     #--
     # This forces MMap.new to use OpenFileMapping() behind the scenes.
     #
-    def self.open(name, opts={}, &block)
+    def self.open(name, opts = {}, &block)
       opts[:name] = name
       opts[:open] = true
-      self.new(opts, &block)
+      new(opts, &block)
     end
 
     # Sets whether or not the mapping handle can be inherited
@@ -268,7 +267,7 @@ module Win32
     #
     def flush(num_bytes = 0)
       unless FlushViewOfFile(@address, num_bytes)
-        SystemCallError.new('FlushViewOfFile', FFI.errno)
+        SystemCallError.new("FlushViewOfFile", FFI.errno)
       end
     end
 
@@ -294,7 +293,7 @@ module Win32
     def write_string(content)
       lock_pattern do
         ptr = FFI::Pointer.new(:char, @address)
-        ptr.write_string(content,content.length)
+        ptr.write_string(content, content.length)
       end
     end
 
@@ -322,7 +321,7 @@ module Win32
       method = method_id.id2name
       args = args.first if args.length == 1
 
-      if method[-1,1] == '=' # Setter
+      if method[-1, 1] == "=" # Setter
         method.chop!
         @hash["#{method}"] = args
 
@@ -330,13 +329,13 @@ module Win32
           instance_variable_set("@#{method}", args)
           marshal = Marshal.dump(@hash)
           ptr = FFI::Pointer.new(:char, @address)
-          ptr.write_string(marshal,marshal.length)
+          ptr.write_string(marshal, marshal.length)
         end
 
       else # Getter
 
         lock_pattern do
-          buf = FFI::MemoryPointer.new(:char, @size)
+          FFI::MemoryPointer.new(:char, @size)
           ptr = FFI::Pointer.new(:char, @address)
           buf = ptr.read_string(@size)
           hash = Marshal.load(buf)
@@ -344,7 +343,7 @@ module Win32
           instance_variable_set("@#{method}", val)
         end
 
-        return instance_variable_get("@#{method}")
+        instance_variable_get("@#{method}")
       end
     end
 
@@ -356,8 +355,8 @@ module Win32
           output
         end
       else
-         output = yield
-         output
+        output = yield
+        output
       end
     end
 
@@ -367,7 +366,7 @@ module Win32
     def mmap_lock
       bool = false
 
-      if(@lock_flag == 0)
+      if @lock_flag == 0
         if WaitForSingleObject(@semaphore, @timeout) == WAIT_OBJECT_0
           bool = true
         end
@@ -386,7 +385,7 @@ module Win32
       return false if @lock_flag != 0
 
       if ReleaseSemaphore(@semaphore, 1, nil) == 0
-        raise SystemCallError.new('ReleaseSemaphore', FFI.errno)
+        raise SystemCallError.new("ReleaseSemaphore", FFI.errno)
       end
 
       true

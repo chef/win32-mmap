@@ -9,10 +9,10 @@
 #
 # Modify this program as you see fit.
 #######################################################################
-require 'win32/mmap'
+require "win32/mmap"
 include Win32
 
-mmap = MMap.open('alpha')
+mmap = MMap.open("alpha")
 
 p mmap.foo
 p mmap.bar

@@ -1,4 +1,4 @@
-require 'ffi'
+require "ffi" unless defined?(FFI)
 
 module Windows
   module Functions
@@ -21,30 +21,30 @@ module Windows
     attach_pfunc :CloseHandle, [:handle], :bool
 
     attach_pfunc :CreateFile, :CreateFileA,
-      [:str, :dword, :dword, :pointer, :dword, :dword, :handle],
+      %i{str dword dword pointer dword dword handle},
       :handle
 
     attach_pfunc :CreateFileMapping, :CreateFileMappingA,
-      [:handle, :pointer, :dword, :dword, :dword, :str],
+      %i{handle pointer dword dword dword str},
       :handle
 
     attach_pfunc :CreateSemaphore, :CreateSemaphoreA,
-      [:pointer, :long, :long, :str],
+      %i{pointer long long str},
       :handle
 
-    attach_pfunc :FlushViewOfFile, [:uintptr_t, :size_t], :bool
+    attach_pfunc :FlushViewOfFile, %i{uintptr_t size_t}, :bool
 
     attach_pfunc :MapViewOfFileEx,
-      [:handle, :dword, :dword, :dword, :size_t, :uintptr_t],
+      %i{handle dword dword dword size_t uintptr_t},
       :uintptr_t
 
     attach_pfunc :OpenFileMapping, :OpenFileMappingA,
-      [:dword, :bool, :str],
+      %i{dword bool str},
       :handle
 
-    attach_pfunc :ReleaseSemaphore, [:handle, :long, :pointer], :bool
+    attach_pfunc :ReleaseSemaphore, %i{handle long pointer}, :bool
     attach_pfunc :UnmapViewOfFile, [:uintptr_t], :bool
-    attach_pfunc :WaitForSingleObject, [:handle, :dword], :dword
-    attach_pfunc :VirtualQuery, [:uintptr_t, :pointer, :size_t], :size_t
+    attach_pfunc :WaitForSingleObject, %i{handle dword}, :dword
+    attach_pfunc :VirtualQuery, %i{uintptr_t pointer size_t}, :size_t
   end
 end
