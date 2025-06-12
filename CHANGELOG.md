@@ -1,8 +1,16 @@
 # win32-mmap Changelog
 
+<!-- latest_release 0.4.3 -->
+## [win32-mmap-0.4.3](https://github.com/chef/win32-mmap/tree/win32-mmap-0.4.3) (2025-06-12)
+
+#### Merged Pull Requests
+- Ruby Version Support for 3.4.2 [#18](https://github.com/chef/win32-mmap/pull/18) ([johnmccrae](https://github.com/johnmccrae))
 <!-- latest_release -->
-<!-- latest_release -->
-<!-- release_rollup -->
+<!-- release_rollup since=0.4.2 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Ruby Version Support for 3.4.2 [#18](https://github.com/chef/win32-mmap/pull/18) ([johnmccrae](https://github.com/johnmccrae)) <!-- 0.4.3 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
