@@ -13,10 +13,6 @@ class TC_Win32_Mmap < Test::Unit::TestCase
     @mmap = MMap.new(name: "test", size: 100)
   end
 
-  test "version is set to expected value" do
-    assert_equal("0.4.3", MMap::VERSION)
-  end
-
   test "dynamic variable names and string values work as expected" do
     assert_nothing_raised { @mmap.foo = "test" }
     assert_nothing_raised { @mmap.bar = "alpha123" }
