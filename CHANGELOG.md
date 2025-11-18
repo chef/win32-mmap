@@ -1,15 +1,16 @@
 # win32-mmap Changelog
 
-<!-- latest_release 0.4.4 -->
-## [win32-mmap-0.4.4](https://github.com/chef/win32-mmap/tree/win32-mmap-0.4.4) (2025-11-14)
+<!-- latest_release 0.4.5 -->
+## [win32-mmap-0.4.5](https://github.com/chef/win32-mmap/tree/win32-mmap-0.4.5) (2025-11-18)
 
 #### Merged Pull Requests
-- set up ai assisted development workflow [#23](https://github.com/chef/win32-mmap/pull/23) ([rishichawda](https://github.com/rishichawda))
+- update copilot instructions with AI compliance workflow [#24](https://github.com/chef/win32-mmap/pull/24) ([rishichawda](https://github.com/rishichawda))
 <!-- latest_release -->
 <!-- release_rollup since=0.4.2 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- update copilot instructions with AI compliance workflow [#24](https://github.com/chef/win32-mmap/pull/24) ([rishichawda](https://github.com/rishichawda)) <!-- 0.4.5 -->
 - set up ai assisted development workflow [#23](https://github.com/chef/win32-mmap/pull/23) ([rishichawda](https://github.com/rishichawda)) <!-- 0.4.4 -->
 - Adding Ruby 3.4 and Cookstyle support [#19](https://github.com/chef/win32-mmap/pull/19) ([johnmccrae](https://github.com/johnmccrae)) <!-- 0.4.3 -->
 - Ruby Version Support for 3.4.2 [#18](https://github.com/chef/win32-mmap/pull/18) ([johnmccrae](https://github.com/johnmccrae)) <!-- 0.4.3 -->
