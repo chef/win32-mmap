@@ -1,15 +1,16 @@
 # win32-mmap Changelog
 
-<!-- latest_release 0.4.5 -->
-## [win32-mmap-0.4.5](https://github.com/chef/win32-mmap/tree/win32-mmap-0.4.5) (2025-11-18)
+<!-- latest_release 0.4.6 -->
+## [win32-mmap-0.4.6](https://github.com/chef/win32-mmap/tree/win32-mmap-0.4.6) (2026-04-17)
 
 #### Merged Pull Requests
-- update copilot instructions with AI compliance workflow [#24](https://github.com/chef/win32-mmap/pull/24) ([rishichawda](https://github.com/rishichawda))
+- CHEF-26037 - Create CODE_OF_CONDUCT.md file [#22](https://github.com/chef/win32-mmap/pull/22) ([cgunasree08](https://github.com/cgunasree08))
 <!-- latest_release -->
 <!-- release_rollup since=0.4.2 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- CHEF-26037 - Create CODE_OF_CONDUCT.md file [#22](https://github.com/chef/win32-mmap/pull/22) ([cgunasree08](https://github.com/cgunasree08)) <!-- 0.4.6 -->
 - update copilot instructions with AI compliance workflow [#24](https://github.com/chef/win32-mmap/pull/24) ([rishichawda](https://github.com/rishichawda)) <!-- 0.4.5 -->
 - set up ai assisted development workflow [#23](https://github.com/chef/win32-mmap/pull/23) ([rishichawda](https://github.com/rishichawda)) <!-- 0.4.4 -->
 - Adding Ruby 3.4 and Cookstyle support [#19](https://github.com/chef/win32-mmap/pull/19) ([johnmccrae](https://github.com/johnmccrae)) <!-- 0.4.3 -->
